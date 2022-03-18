@@ -12,7 +12,7 @@
 		6CA2516227E3A17200EE6A0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CA2516027E3A17200EE6A0E /* Main.storyboard */; };
 		6CA2516427E3A17400EE6A0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CA2516327E3A17400EE6A0E /* Assets.xcassets */; };
 		6CA2516727E3A17400EE6A0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CA2516527E3A17400EE6A0E /* LaunchScreen.storyboard */; };
-		6CA2517227E3ABCA00EE6A0E /* BTCRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA2517127E3ABCA00EE6A0E /* BTCRate.swift */; };
+		6CA2517227E3ABCA00EE6A0E /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA2517127E3ABCA00EE6A0E /* Bitcoin.swift */; };
 		6CA2517427E3B71E00EE6A0E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA2517327E3B71E00EE6A0E /* NetworkManager.swift */; };
 		6CA2517B27E4EE0600EE6A0E /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA2517A27E4EE0600EE6A0E /* RateViewController.swift */; };
 /* End PBXBuildFile section */
@@ -25,7 +25,7 @@
 		6CA2516327E3A17400EE6A0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CA2516627E3A17400EE6A0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CA2516827E3A17400EE6A0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CA2517127E3ABCA00EE6A0E /* BTCRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCRate.swift; sourceTree = "<group>"; };
+		6CA2517127E3ABCA00EE6A0E /* Bitcoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitcoin.swift; sourceTree = "<group>"; };
 		6CA2517327E3B71E00EE6A0E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6CA2517A27E4EE0600EE6A0E /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,7 +108,7 @@
 		6CA2517627E3B74500EE6A0E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6CA2517127E3ABCA00EE6A0E /* BTCRate.swift */,
+				6CA2517127E3ABCA00EE6A0E /* Bitcoin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CA2517427E3B71E00EE6A0E /* NetworkManager.swift in Sources */,
-				6CA2517227E3ABCA00EE6A0E /* BTCRate.swift in Sources */,
+				6CA2517227E3ABCA00EE6A0E /* Bitcoin.swift in Sources */,
 				6CA2515B27E3A17200EE6A0E /* AppDelegate.swift in Sources */,
 				6CA2517B27E4EE0600EE6A0E /* RateViewController.swift in Sources */,
 				6CA2515D27E3A17200EE6A0E /* SceneDelegate.swift in Sources */,
