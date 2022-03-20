@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class RateViewController: UIViewController {
     
@@ -15,10 +16,12 @@ class RateViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var currencySegmentedControl: UISegmentedControl!
     
-    private var bitcoin: Bitcoin?
+    private var bitcoin: [Bitcoin] = []
     private var code = "USD"
     
     override func viewDidLoad() {
+        
+        title = ""
         
         imageView.image = UIImage(named: "Bitcoin")
         
@@ -33,34 +36,38 @@ class RateViewController: UIViewController {
              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26)],
             for: .normal)
         
-        fetchData()
+        downloadData()
     }
     
     @IBAction func refreshButton() {
-        fetchData()
+        downloadData()
     }
     
     @IBAction func currencySelection() {
-        fetchData()
+        downloadData()
     }
     
-    private func fetchData() {
-        NetworkManager.shared.fetchData { bitcoin in
-            self.activityIndicator.isHidden = false
-            self.activityIndicator.startAnimating()
-            
-            self.title = bitcoin.chartName
-            self.dateLabel.text = bitcoin.time.updateduk
-            if self.currencySegmentedControl.selectedSegmentIndex == 0 {
-                self.rateLabel.text = "\(bitcoin.bpi.USD.rate_float ?? 0) $"
-            } else {
-                self.rateLabel.text = "\(bitcoin.bpi.EUR.rate_float ?? 0) €"
+    private func downloadData() {
+        NetworkManager.shared.fetchDataWithAlamofire { results in
+            switch results {
+            case .success(let bitcoin):
+                self.activityIndicator.isHidden = false
+                self.activityIndicator.startAnimating()
+                self.title = bitcoin.chartName
+                self.dateLabel.text = bitcoin.time.updateduk
+                self.rateLabel.text = "\(bitcoin.bpi.USD.rate_float ?? 0)"
+//                if self.currencySegmentedControl.selectedSegmentIndex == 0 {
+//                    self.rateLabel.text = "\(bitcoin.bpi.USD.rate_float ?? 0) $"
+//                } else {
+//                    self.rateLabel.text = "\(bitcoin.bpi.EUR.rate_float ?? 0) €"
+//                }
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                self.dateLabel.isHidden = false
+                self.rateLabel.isHidden = false
+            case .failure(let error):
+                print(error)
             }
-            
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
-            self.dateLabel.isHidden = false
-            self.rateLabel.isHidden = false
         }
     }
 }
