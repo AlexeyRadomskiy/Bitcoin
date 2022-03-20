@@ -6,28 +6,25 @@
 //
 
 import Foundation
+import Alamofire
 
 class NetworkManager {
     
     static let shared = NetworkManager()
     
-    func fetchData(_ completion: @escaping(Bitcoin) -> Void) {
-        guard let url = URL(string: Link.bitcoinRateApi.rawValue) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-        
-            do {
-                let bitcoin = try JSONDecoder().decode(Bitcoin.self, from: data)
-                DispatchQueue.main.async {
-                    completion(bitcoin)
+    func fetchDataWithAlamofire(_ completion: @escaping(Result<Bitcoin, Error>) -> Void) {
+        AF.request(Link.bitcoinRateApi.rawValue).validate().responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let bitcoin = Bitcoin.getBitcoinRate(from: value)
+                    DispatchQueue.main.async {
+                        completion(.success(bitcoin))
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
                 }
-            } catch let error {
-                print(error)
             }
-        }.resume()
     }
 }
