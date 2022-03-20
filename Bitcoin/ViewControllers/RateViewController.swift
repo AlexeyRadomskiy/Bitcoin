@@ -16,7 +16,6 @@ class RateViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var currencySegmentedControl: UISegmentedControl!
     
-    private var bitcoin: [Bitcoin] = []
     private var code = "USD"
     
     override func viewDidLoad() {
@@ -55,12 +54,11 @@ class RateViewController: UIViewController {
                 self.activityIndicator.startAnimating()
                 self.title = bitcoin.chartName
                 self.dateLabel.text = bitcoin.time.updateduk
-                self.rateLabel.text = "\(bitcoin.bpi.USD.rate_float ?? 0)"
-//                if self.currencySegmentedControl.selectedSegmentIndex == 0 {
-//                    self.rateLabel.text = "\(bitcoin.bpi.USD.rate_float ?? 0) $"
-//                } else {
-//                    self.rateLabel.text = "\(bitcoin.bpi.EUR.rate_float ?? 0) €"
-//                }
+                if self.currencySegmentedControl.selectedSegmentIndex == 0 {
+                    self.rateLabel.text = "\(bitcoin.bpi.USD.rate_float ?? 0) $"
+                } else {
+                    self.rateLabel.text = "\(bitcoin.bpi.EUR.rate_float ?? 0) €"
+                }
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
                 self.dateLabel.isHidden = false

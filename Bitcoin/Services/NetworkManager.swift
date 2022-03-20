@@ -13,7 +13,9 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     func fetchDataWithAlamofire(_ completion: @escaping(Result<Bitcoin, Error>) -> Void) {
-        AF.request(Link.bitcoinRateApi.rawValue).validate().responseJSON { response in
+        AF.request(Link.bitcoinRateApi.rawValue)
+            .validate()
+            .responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let bitcoin = Bitcoin.getBitcoinRate(from: value)

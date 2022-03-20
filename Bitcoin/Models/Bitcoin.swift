@@ -26,7 +26,7 @@ struct Bitcoin: Decodable {
         
         chartName = bitcoinData["chartName"] as? String
         
-        let bpiDict = bitcoinData["bpi"] as? [String: String] ?? [:]
+        let bpiDict = bitcoinData["bpi"] as? [String: Any] ?? [:]
         bpi = Rate(value: bpiDict)
     }
     
@@ -51,20 +51,20 @@ struct Rate: Decodable {
     let EUR: Сurrency
     
     init(value: [String: Any]) {
-        let USDDict = value["USD"] as? [String: Float] ?? [:]
+        let USDDict = value["USD"] as? [String: Any] ?? [:]
         USD = Сurrency(value: USDDict)
         
-        let EURDict = value["EUR"] as? [String: Float] ?? [:]
+        let EURDict = value["EUR"] as? [String: Any] ?? [:]
         EUR = Сurrency(value: EURDict)
     }
 }
 
 // MARK: - Currency
 struct Сurrency: Decodable {
-    let rate_float: Float?
+    let rate_float: Double?
     
-    init(value: [String: Float]) {
-        rate_float = value["rate_float"]
+    init(value: [String: Any]) {
+        rate_float = value["rate_float"] as? Double ?? 0
     }
 }
 
